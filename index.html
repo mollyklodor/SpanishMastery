@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SMART Goal Quest</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>SMART Goal Quest</h1>
+      <p>SMART goals + checkpoint celebrations for Grades 4–6.</p>
+    </header>
+
+    <main class="container">
+      <section id="loginView" class="card">
+        <h2>Welcome</h2>
+        <p>Choose your login type.</p>
+
+        <div class="segmented" role="tablist" aria-label="Login type selector">
+          <button id="showStudentLogin" class="segment active" type="button">Student</button>
+          <button id="showTeacherLogin" class="segment" type="button">Teacher</button>
+        </div>
+
+        <form id="studentLoginForm" class="stack-sm">
+          <label>
+            First Name
+            <input id="studentFirstNameInput" type="text" required placeholder="Maya" />
+          </label>
+          <label>
+            Last Initial
+            <input id="studentLastInitialInput" type="text" maxlength="1" required placeholder="R" />
+          </label>
+          <label>
+            Class Code
+            <input id="studentClassCodeInput" type="text" required placeholder="DAY-MATH-01" />
+          </label>
+          <button type="submit">Student Log In</button>
+        </form>
+
+        <form id="teacherLoginForm" class="stack-sm hidden">
+          <label>
+            Username
+            <input id="teacherUsernameInput" type="text" required placeholder="rivera" />
+          </label>
+          <label>
+            Password
+            <input id="teacherPasswordInput" type="password" required placeholder="••••••••" />
+          </label>
+          <button type="submit">Teacher Log In</button>
+        </form>
+      </section>
+
+      <section id="studentView" class="hidden">
+        <div class="card">
+          <div class="row between align-center">
+            <div>
+              <h2 id="studentGreeting">Student Dashboard</h2>
+              <p id="studentClassLabel"></p>
+            </div>
+            <button class="secondary" id="studentLogoutBtn">Log Out</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>My SMART Goal</h3>
+            <form id="goalForm" class="stack-sm">
+              <label>Specific
+                <textarea id="specificInput" required placeholder="What exactly will you do?"></textarea>
+              </label>
+              <label>Measurable
+                <textarea id="measurableInput" required placeholder="How will you track your growth?"></textarea>
+              </label>
+              <label>Achievable
+                <textarea id="achievableInput" required placeholder="Why is this realistic for you?"></textarea>
+              </label>
+              <label>Relevant
+                <textarea id="relevantInput" required placeholder="Why does this goal matter?"></textarea>
+              </label>
+              <label>Time-Bound
+                <input id="deadlineInput" type="date" required />
+              </label>
+              <button type="submit">Save SMART Goal</button>
+            </form>
+          </article>
+
+          <article class="card">
+            <h3>My Checkpoint Progress</h3>
+            <div id="goalPreview" class="goal-preview empty">No goal yet. Save your SMART goal to begin.</div>
+
+            <label>
+              Current Checkpoint
+              <select id="checkpointSelect"></select>
+            </label>
+            <button id="saveCheckpointBtn" type="button">Save Checkpoint</button>
+
+            <h4>Achievements</h4>
+            <ul id="achievementList" class="badges"></ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="teacherView" class="hidden">
+        <div class="card">
+          <div class="row between align-center">
+            <div>
+              <h2 id="teacherGreeting">Teacher Dashboard</h2>
+              <p>Create DAYS (classes), then monitor all students by checkpoint.</p>
+            </div>
+            <button class="secondary" id="teacherLogoutBtn">Log Out</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <section class="card">
+            <h3>Create a DAY (Class)</h3>
+            <form id="createDayForm" class="stack-sm">
+              <label>
+                DAY Name
+                <input id="dayNameInput" type="text" required placeholder="Monday Math" />
+              </label>
+              <label>
+                Class Code
+                <input id="dayCodeInput" type="text" required placeholder="DAY-MATH-01" />
+              </label>
+              <button type="submit">Create DAY</button>
+            </form>
+          </section>
+
+          <section class="card">
+            <h3>Choose DAY</h3>
+            <label>
+              Active DAY
+              <select id="daySelect"></select>
+            </label>
+            <p id="dayMeta" class="hint"></p>
+          </section>
+        </div>
+
+        <section class="card">
+          <h3>Students in Selected DAY</h3>
+          <div id="studentTableWrap" class="table-wrap"></div>
+        </section>
+      </section>
+    </main>
+
+    <template id="badgeTemplate">
+      <li class="badge-item"></li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
